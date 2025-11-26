@@ -15,17 +15,13 @@ pipeline {
         
         stage('Build') {
             steps {
-                nodejs('Node 7.8.0') {
-                    sh 'npm install'
-                }
+                sh 'docker run --rm -v $(pwd):/app -w /app node:16-alpine npm install'
             }
         }
         
         stage('Test') {
             steps {
-                nodejs('Node 7.8.0') {
-                    sh 'npm test || true'
-                }
+                sh 'docker run --rm -v $(pwd):/app -w /app node:16-alpine npm test || true'
             }
         }
         
