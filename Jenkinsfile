@@ -13,18 +13,6 @@ pipeline {
             }
         }
         
-        stage('Build') {
-            steps {
-                sh 'docker run --rm -v $(pwd):/app -w /app node:16-alpine npm install'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                sh 'docker run --rm -v $(pwd):/app -w /app node:16-alpine npm test || true'
-            }
-        }
-        
         stage('Build Docker Image') {
             steps {
                 script {
